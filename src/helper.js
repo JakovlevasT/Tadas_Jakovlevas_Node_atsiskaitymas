@@ -5,7 +5,7 @@ async function testConnection() {
   let conn;
   try {
     conn = await mysql.createConnection(dbConfig);
-    await conn.query('SELECT * FROM `posts` LIMIT 1');
+    await conn.query('SELECT * FROM `users` LIMIT 1');
     console.log('succesfuly connected to mysql');
   } catch (error) {
     console.log('testConnection failed, did you start XAMPP mate?');

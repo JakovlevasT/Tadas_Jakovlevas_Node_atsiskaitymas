@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 const { testConnection } = require('./helper');
+const userRouter = require('./Routes/userRoute');
 
 const app = express();
 
@@ -16,7 +17,9 @@ app.use(cors());
 
 // use Routers
 
-// testConnection();
+app.use('/api/auth', userRouter);
+
+testConnection();
 
 app.listen(PORT, () => {
   console.log(`Server runing on http://localhost:${PORT}`);
