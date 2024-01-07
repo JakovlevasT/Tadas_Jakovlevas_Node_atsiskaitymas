@@ -13,7 +13,7 @@ Content-Type: application/json
 }
 
 
-### 
+### Login auth
 
 POST http://localhost:3000/api/auth/login
 Content-Type: application/json
@@ -22,3 +22,25 @@ Content-Type: application/json
   "user_name": "Tadas",
   "password": "qwerty"
 }
+### Create shop item
+
+POST http://localhost:3000/api/shop_items
+Content-Type: application/json
+
+{
+  "name": "Burger",
+  "price": 8,
+  "description": "The best burger in town",
+  "image": "https://picsum.photos/200/300",
+  "item_type_id": 1
+}
+
+### Gauti visus parduotuves produktus
+
+GET http://localhost:3000/api/shop_items
+### Gauti pagal produktoo= id 
+
+GET http://localhost:3000/api/shop_items/1
+### istrina preke pagal id
+
+DELETE http://localhost:3000/api/shop_items/1
