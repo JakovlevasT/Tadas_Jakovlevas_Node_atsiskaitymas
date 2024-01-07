@@ -44,3 +44,16 @@ GET http://localhost:3000/api/shop_items/1
 ### istrina preke pagal id
 
 DELETE http://localhost:3000/api/shop_items/1
+
+### Create the order
+
+POST http://localhost:3000/api/orders
+Content-Type: application/json
+
+{
+  "user_id": 2,
+  "shop_item_id": 1,
+  "quantity": 3,
+  "total_price": 220,
+  "status": "pending"
+}
