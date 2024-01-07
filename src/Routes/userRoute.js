@@ -31,4 +31,16 @@ userRouter.post('/register', checkUsersBody, async (req, res) => {
   res.status(400).json('no rows affected');
 });
 
+userRouter.post('/login', async (req, res) => {
+  const { user_name: userName, password } = req.body;
+  const argArr = [userName, password];
+  const sql = `SELECT * FROM ${tableName} WHERE user_name=? AND password=?`;
+  const [rows, error] = await dbQueryWithData(sql, argArr);
+  if (rows.length === 0) {
+    res.status(400).json('duomenys nesutampa');
+  }
+
+  console.log(rows, error);
+  res.json(rows[0]);
+});
 module.exports = userRouter;

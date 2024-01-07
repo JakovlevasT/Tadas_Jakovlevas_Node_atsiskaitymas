@@ -12,6 +12,13 @@ Content-Type: application/json
   "role_id": 1
 }
 
+
 ### 
 
-GET http://localhost:3000/api/auth/users
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "user_name": "Tadas",
+  "password": "qwerty"
+}
