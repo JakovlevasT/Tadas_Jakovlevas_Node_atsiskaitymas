@@ -7,11 +7,8 @@ const tableName = 'users';
 const userRouter = express.Router();
 
 userRouter.post('/register', checkUsersBody, async (req, res) => {
+  // eslint-disable-next-line object-curly-newline
   const { user_name: userName, email, password, role_id: roleId } = req.body;
-  console.log('name ===', userName);
-  console.log('email ===', email);
-  console.log('password ===', password);
-  console.log('roleId ===', roleId);
   const argArr = [userName, email, password, roleId];
   const sql = `INSERT INTO ${tableName} ( user_name, email, password, role_id) VALUES (?,?,?,?) `;
 

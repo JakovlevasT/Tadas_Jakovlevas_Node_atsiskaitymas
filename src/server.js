@@ -5,6 +5,7 @@ const cors = require('cors');
 
 const { testConnection } = require('./helper');
 const userRouter = require('./Routes/userRoute');
+const shopItemRouter = require('./Routes/shopItemsRoute');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(cors());
 // use Routers
 
 app.use('/api/auth', userRouter);
+app.use('/api/shop_items', shopItemRouter);
 
 testConnection();
 
