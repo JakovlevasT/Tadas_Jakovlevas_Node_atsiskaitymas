@@ -33,13 +33,26 @@ els.form.addEventListener('submit', (e) => {
     },
     body: JSON.stringify(loginObj),
   })
-    .then((resp) => resp.json())
+    .then((resp) => {
+      if (!resp.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return resp.json();
+    })
     .then((data) => {
-      if (data !== 'Success') {
+      console.log('data ===', data);
+      if (data === 'Prisijungimas arba slaptazodis negalioja') {
+        // eslint-disable-next-line no-use-before-define
         showError(data);
         return;
       }
-      console.log('klaidu nera');
+      console.log('data ===', data.email);
+      localStorage.setItem(
+        'userLoggedIn',
+        JSON.stringify({ email: data.email })
+      );
+      console.log('User data stored in local storage');
+      // window.location.href =
     })
     .catch((error) => {
       console.warn('ivyko klaida:', error);

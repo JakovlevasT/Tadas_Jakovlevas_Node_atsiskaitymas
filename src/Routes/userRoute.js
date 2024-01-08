@@ -34,10 +34,10 @@ userRouter.post('/login', checkLoginBody, async (req, res) => {
   const sql = `SELECT * FROM ${tableName} WHERE email=? AND password=?`;
   const [rows, error] = await dbQueryWithData(sql, argArr);
   if (rows.length === 0) {
-    res.status(400).json('duomenys nesutampa');
+    res.status(400).json('Prisijungimas arba slaptazodis negalioja');
   }
 
   console.log(rows, error);
-  res.json('Success');
+  res.json(rows[0]);
 });
 module.exports = userRouter;
