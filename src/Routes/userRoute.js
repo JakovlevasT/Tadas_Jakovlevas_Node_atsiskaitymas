@@ -38,6 +38,6 @@ userRouter.post('/login', checkLoginBody, async (req, res) => {
   }
 
   console.log(rows, error);
-  res.json(rows[0]);
+  res.json('Success');
 });
 module.exports = userRouter;

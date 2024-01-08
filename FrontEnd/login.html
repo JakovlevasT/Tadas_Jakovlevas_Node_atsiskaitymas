@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/FrontEnd/style/reset.css" />
+    <link rel="stylesheet" href="/FrontEnd/style/login.css" />
+    <script src="/FrontEnd/js/login.js" type="module"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Sveiki atvyke!</h1>
+      <p>Smagu kad renkates mus</p>
+      <ul id="errors-list" class="errors-list"></ul>
+      <form novalidate>
+        <div>
+          <label for="email">EMAIL <span>*</span></label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Your email goes here"
+          />
+        </div>
+        <div>
+          <label for="password">PASSWORD <span>*</span></label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Your password goes here"
+          />
+        </div>
+        <button class="btn">Sign in</button>
+        <p>You don't have an account?<a href="#"> Create Here for free!</a></p>
+      </form>
+    </div>
+  </body>
+</html>
