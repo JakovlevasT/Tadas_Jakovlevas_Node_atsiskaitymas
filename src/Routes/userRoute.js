@@ -33,11 +33,11 @@ userRouter.post('/login', checkLoginBody, async (req, res) => {
   const argArr = [email, password];
   const sql = `SELECT * FROM ${tableName} WHERE email=? AND password=?`;
   const [rows, error] = await dbQueryWithData(sql, argArr);
-  if (rows.length === 0) {
-    res.status(400).json('Prisijungimas arba slaptazodis negalioja');
+  if (error) {
+    res.status(400).json({ status: 'error', errors: error });
   }
 
   console.log(rows, error);
-  res.json(rows[0]);
+  res.json({ user: rows[0], status: 'Success' });
 });
 module.exports = userRouter;

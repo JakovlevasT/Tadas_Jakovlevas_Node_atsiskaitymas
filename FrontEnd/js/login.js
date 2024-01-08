@@ -8,7 +8,11 @@ const els = {
   email: document.getElementById('email'),
   password: document.getElementById('password'),
   errorList: document.getElementById('errors-list'),
+  logBtn: document.getElementById('login-btn'),
 };
+
+const userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn'));
+console.log('userLoggedIn ===', userLoggedIn);
 
 console.log('els ===', els);
 
@@ -33,23 +37,18 @@ els.form.addEventListener('submit', (e) => {
     },
     body: JSON.stringify(loginObj),
   })
-    .then((resp) => {
-      if (!resp.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return resp.json();
-    })
+    .then((resp) => resp.json())
     .then((data) => {
       console.log('data ===', data);
-      if (data === 'Prisijungimas arba slaptazodis negalioja') {
-        // eslint-disable-next-line no-use-before-define
-        showError(data);
+      if (data.status === 'error') {
+        showError(data.errors);
         return;
       }
+
       console.log('data ===', data.email);
       localStorage.setItem(
         'userLoggedIn',
-        JSON.stringify({ email: data.email })
+        JSON.stringify({ email: data.user.email })
       );
       console.log('User data stored in local storage');
       // window.location.href =
