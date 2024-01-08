@@ -9,3 +9,13 @@ INSERT INTO `shop_items` (`shop_items_id`, `name`, `price`, `description`, `imag
 -- add order
 
 INSERT INTO `orders` (`order_id`, `user_id`, `shop_item_id`, `quantity`, `total_price`, `status`) VALUES (NULL, '1', '2', '4', '220', 'pending')
+
+-- get order
+
+SELECT orders.user_id, shop_item_id, quantity, total_price, status, users.user_name
+  FROM orders
+  JOIN users
+  ON orders.user_id=users.user_id
+  JOIN shop_items
+  ON shop_items.shop_items_id=orders.shop_item_id
+  WHERE orders.user_id=3;

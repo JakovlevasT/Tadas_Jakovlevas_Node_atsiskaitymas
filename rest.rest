@@ -6,10 +6,10 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-  "user_name": "Tomas",
-  "email": "tomas@email.com",
-  "password": "12345",
-  "role_id": 1
+  "user_name": "Rebeka",
+  "email": "rebeka@email.com",
+  "password": "password",
+  "role_id": 2
 }
 
 
@@ -57,3 +57,15 @@ Content-Type: application/json
   "total_price": 220,
   "status": "pending"
 }
+
+### gauti uzsakymus su user naem, shop item name ir vnt price
+
+GET http://localhost:3000/api/orders
+
+### gauti uzsakymus pagal order id
+
+GET http://localhost:3000/api/orders/2
+
+### gauti vartotojo uzsakyma pagal user_id
+
+GET http://localhost:3000/api/orders/user/3
