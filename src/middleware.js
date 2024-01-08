@@ -46,7 +46,48 @@ async function checkLoginBody(req, res, next) {
   }
 }
 
+async function checkShopItemsBody(req, res, next) {
+  const shopItemShema = Joi.object({
+    name: Joi.string().min(3).max(20).required(),
+    price: Joi.number().integer().required(),
+    description: Joi.string().min(3).required(),
+    image: Joi.string().min(3).required(),
+    item_type_id: Joi.number().positive().required(),
+  });
+  try {
+    const validationResult = await shopItemShema.validateAsync(req.body, {
+      abortEarly: false,
+    });
+    console.log('validationResult ===', validationResult);
+    next();
+  } catch (error) {
+    const msgIfError = fomratError(error);
+    res.status(400).json(msgIfError);
+  }
+}
+
+async function checkOrdersBody(req, res, next) {
+  const orderShema = Joi.object({
+    user_id: Joi.number().positive().required(),
+    shop_item_id: Joi.number().positive().required(),
+    quantity: Joi.number().required(),
+    total_price: Joi.number().required(),
+    status: Joi.string().min(2).required(),
+  });
+  try {
+    const validationResult = await orderShema.validateAsync(req.body, {
+      abortEarly: false,
+    });
+    console.log('validationResult ===', validationResult);
+    next();
+  } catch (error) {
+    const msgIfError = fomratError(error);
+    res.status(400).json(msgIfError);
+  }
+}
 module.exports = {
   checkUsersBody,
   checkLoginBody,
+  checkShopItemsBody,
+  checkOrdersBody,
 };

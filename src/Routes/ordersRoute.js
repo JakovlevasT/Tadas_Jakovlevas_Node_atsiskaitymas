@@ -1,5 +1,6 @@
 const express = require('express');
 const { dbQueryWithData } = require('../helper');
+const { checkOrdersBody } = require('../middleware');
 
 const tableName = 'orders';
 
@@ -7,7 +8,7 @@ const orderRouter = express();
 
 // POST  sukuria uzsakyma
 
-orderRouter.post('/', async (req, res) => {
+orderRouter.post('/', checkOrdersBody, async (req, res) => {
   const {
     user_id: userId,
     shop_item_id: shopItemId,
