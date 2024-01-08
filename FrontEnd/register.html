@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="/FrontEnd/js/register.js" type="module"></script>
+  </head>
+  <body>
+    <nav>N</nav>
+    <div class="container">
+      <h1>Create profile</h1>
+      <form novalidate>
+        <div>
+          <label for="name">Name</label>
+          <input type="text" name="name" id="user-name" />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" />
+        </div>
+        <div>
+          <label for="re-password">Repeat password</label>
+          <input type="password" name="re_password" id="rePassword" />
+        </div>
+        <div>
+          <select name="role" id="role">
+            <option disabled selected>Role</option>
+          </select>
+        </div>
+        <button type="submit">Create profile</button>
+      </form>
+    </div>
+  </body>
+</html>
