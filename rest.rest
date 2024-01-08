@@ -19,7 +19,7 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "user_name": "Tadas",
+  "email": "tadas@email.com",
   "password": "qwerty"
 }
 ### Create shop item
@@ -69,3 +69,7 @@ GET http://localhost:3000/api/orders/2
 ### gauti vartotojo uzsakyma pagal user_id
 
 GET http://localhost:3000/api/orders/user/3
+
+### gauti visas user roles
+
+GET http://localhost:3000/api/user_roles

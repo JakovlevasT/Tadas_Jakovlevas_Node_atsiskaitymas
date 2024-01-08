@@ -7,6 +7,7 @@ const { testConnection } = require('./helper');
 const userRouter = require('./Routes/userRoute');
 const shopItemRouter = require('./Routes/shopItemsRoute');
 const orderRouter = require('./Routes/ordersRoute');
+const roleRouter = require('./Routes/roleRouter');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(cors());
 app.use('/api/auth', userRouter);
 app.use('/api/shop_items', shopItemRouter);
 app.use('/api/orders', orderRouter);
+app.use('/api/user_roles', roleRouter);
 
 testConnection();
 

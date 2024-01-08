@@ -1,6 +1,6 @@
 const express = require('express');
 const { dbQueryWithData } = require('../helper');
-const { checkUsersBody } = require('../middleware');
+const { checkUsersBody, checkLoginBody } = require('../middleware');
 
 const tableName = 'users';
 
@@ -28,10 +28,10 @@ userRouter.post('/register', checkUsersBody, async (req, res) => {
   res.status(400).json('no rows affected');
 });
 
-userRouter.post('/login', async (req, res) => {
-  const { user_name: userName, password } = req.body;
-  const argArr = [userName, password];
-  const sql = `SELECT * FROM ${tableName} WHERE user_name=? AND password=?`;
+userRouter.post('/login', checkLoginBody, async (req, res) => {
+  const { email, password } = req.body;
+  const argArr = [email, password];
+  const sql = `SELECT * FROM ${tableName} WHERE email=? AND password=?`;
   const [rows, error] = await dbQueryWithData(sql, argArr);
   if (rows.length === 0) {
     res.status(400).json('duomenys nesutampa');
