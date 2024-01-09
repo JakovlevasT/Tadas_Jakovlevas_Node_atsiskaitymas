@@ -3,11 +3,16 @@
 import { getDataFetch, shopItemsUrl, orderUrl } from './modules/helper.js';
 
 const user = JSON.parse(localStorage.getItem('userLoggedIn'));
+const isUserAdmin = user?.role_id === 1;
 const els = {
   shopList: document.getElementById('shop-list'),
   logOut: document.getElementById('log-out-btn'),
+  addItem: document.getElementById('add-item'),
 };
-
+console.log('user ===', user);
+if (!isUserAdmin) {
+  els.addItem.classList.add('hidden');
+}
 els.logOut.addEventListener('click', () => {
   localStorage.removeItem('userLoggedIn');
   window.location.href = 'login.html';
@@ -45,8 +50,13 @@ function makeOneItemCard(IObj) {
     <button id='second' class="btn btn-secondary">Delete</button>
   </div>
   `;
+
   const delBtnEl = liEl.querySelector('#second');
-  delBtnEl.addEventListener('click', deleteItem);
+  if (!isUserAdmin) {
+    delBtnEl.classList.add('hidden');
+  } else {
+    delBtnEl.addEventListener('click', deleteItem);
+  }
 
   const addToOrderBtnEl = liEl.querySelector('#first');
   addToOrderBtnEl.addEventListener('click', (event) => {
@@ -68,13 +78,13 @@ function deleteItem(event) {
     .then((resp) => {
       console.log('resp ===', resp);
       if (resp.status === 200) {
-        console.log('istrinta sekmingai');
-        // jei taip tai istrinti pati elementa (el.remove())
+        alert('Item was deleted');
+
         cardEl.remove();
       }
     })
     .catch((error) => {
-      console.warn('ivyko klaida:', error);
+      alert('ivyko klaida');
     });
   // ar sekmingas istrynimas
 }
