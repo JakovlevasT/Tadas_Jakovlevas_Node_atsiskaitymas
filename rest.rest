@@ -74,3 +74,6 @@ GET http://localhost:3000/api/orders/user/3
 ### gauti visas user roles
 
 GET http://localhost:3000/api/user_roles
+
+### 
+GET http://localhost:3000/api/item_type

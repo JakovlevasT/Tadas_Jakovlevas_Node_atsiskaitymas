@@ -19,11 +19,14 @@ shopItemRouter.post('/', checkShopItemsBody, async (req, res) => {
   console.log('insertResultObj ===', insertResultObj);
 
   if (error) {
-    console.log('error ===', error);
-    res.status(500).json(error);
+    res.status(500).json({ status: 'error', errors: error });
     return;
   }
-  if (insertResultObj) res.json(insertResultObj);
+  if (insertResultObj.affectedRows === 1) {
+    res.status(201).json({ status: 'success', msg: 'Item was created' });
+    return;
+  }
+  res.status(400).json('no rows affected');
 });
 // GET visas prekes
 

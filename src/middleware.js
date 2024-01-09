@@ -62,7 +62,7 @@ async function checkShopItemsBody(req, res, next) {
     next();
   } catch (error) {
     const msgIfError = fomratError(error);
-    res.status(400).json(msgIfError);
+    res.status(400).json({ errors: msgIfError, status: 'error' });
   }
 }
 

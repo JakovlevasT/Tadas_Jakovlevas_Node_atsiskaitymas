@@ -13,9 +13,6 @@ userRouter.post('/register', checkUsersBody, async (req, res) => {
   const sql = `INSERT INTO ${tableName} ( user_name, email, password, role_id) VALUES (?,?,?,?) `;
 
   const [insertResultObj, error] = await dbQueryWithData(sql, argArr);
-  console.log('error ===', error);
-  console.log('argArr ===', argArr);
-  console.log('insertResultObj ===', insertResultObj);
 
   if (error) {
     res.status(500).json('Server error');

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/FrontEnd/style/reset.css" />
+    <link rel="stylesheet" href="/FrontEnd/style/login.css" />
+    <script src="/FrontEnd/js/add_item.js" type="module"></script>
+  </head>
+  <body>
+    <nav>N</nav>
+    <div class="container">
+      <h1>Create Item</h1>
+      <form novalidate>
+        <div>
+          <label for="name">Name</label>
+          <input type="text" name="name" id="item-name" />
+          <span class="error"></span>
+        </div>
+        <div>
+          <label for="price">Price</label>
+          <input type="number" name="price" id="price" />
+          <span class="error"></span>
+        </div>
+        <div>
+          <label for="Description">Description</label>
+          <textarea
+            name="description"
+            id="description"
+            cols="20"
+            rows="10"
+          ></textarea>
+          <span class="error"></span>
+        </div>
+        <div>
+          <label for="image">image</label>
+          <input type="text" name="image" id="image" />
+          <span class="error"></span>
+        </div>
+        <div>
+          <label for="item-type"></label>
+          <select name="item-type" id="item-type">
+            <option disabled selected>Item type</option>
+          </select>
+          <span class="error"></span>
+        </div>
+        <button type="submit">Create Item</button>
+      </form>
+    </div>
+  </body>
+</html>

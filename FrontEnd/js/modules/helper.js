@@ -6,6 +6,7 @@ export const rolesUrl = `${baseUrl}/user_roles`;
 export const registerUrl = `${baseUrl}/auth/register`;
 export const shopItemsUrl = `${baseUrl}/shop_items`;
 export const orderUrl = `${baseUrl}/orders`;
+export const itemUrl = `${baseUrl}/item_type`;
 
 export async function getDataFetch(url) {
   try {
