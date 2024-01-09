@@ -11,20 +11,23 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/FrontEnd/style/reset.css" />
-    <link rel="stylesheet" href="/FrontEnd/style/login.css" />
+    <link rel="stylesheet" href="/FrontEnd/style/style.css" />
     <script src="/FrontEnd/js/login.js" type="module"></script>
   </head>
-  <body>
+  <body class="login-body">
     <div class="container login">
       <div class="text-center">
-        <h1>Sveiki atvyke!</h1>
-        <p>Smagu kad renkates mus</p>
+        <h1 class="login-title">Welcome!</h1>
+        <p class="login-msg">It's nice that you choose us.</p>
       </div>
-      <ul id="errors-list" class="errors-list"></ul>
+      <ul id="errors-list" class="login-errors-list unlisted"></ul>
       <form novalidate>
         <div>
-          <label for="email">EMAIL <span>*</span></label>
+          <label class="label-text" for="email"
+            >EMAIL <span class="required-span">*</span></label
+          >
           <input
+            class="input-text"
             type="email"
             name="email"
             id="email"
@@ -32,8 +35,11 @@
           />
         </div>
         <div>
-          <label for="password">PASSWORD <span>*</span></label>
+          <label class="label-text" for="password"
+            >PASSWORD <span class="required-span">*</span></label
+          >
           <input
+            class="input-text"
             type="password"
             name="password"
             id="password"
@@ -41,10 +47,9 @@
           />
         </div>
         <button class="btn">Sign in</button>
-        <p>
-          You don't have an account?<a href="register.html">
-            Create Here for free!</a
-          >
+        <p class="login-create-acc">
+          You don't have an account?
+          <a class="login-create-acc" href="register.html"> Create Here</a>
         </p>
       </form>
     </div>
