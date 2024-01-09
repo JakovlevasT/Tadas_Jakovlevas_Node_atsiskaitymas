@@ -51,13 +51,13 @@ els.form.addEventListener('submit', (e) => {
         return;
       }
 
-      console.log('data ===', data.email);
+      console.log('data ===', data.user);
       localStorage.setItem(
         'userLoggedIn',
         JSON.stringify({
           email: data.user.email,
           id: data.user.user_id,
-          role_id: data.role_id,
+          role_id: data.user.role_id,
         })
       );
       console.log('User data stored in local storage');

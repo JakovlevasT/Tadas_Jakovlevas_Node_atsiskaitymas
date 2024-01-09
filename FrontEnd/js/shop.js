@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-use-before-define */
 import { getDataFetch, shopItemsUrl, orderUrl } from './modules/helper.js';
 
 const user = JSON.parse(localStorage.getItem('userLoggedIn'));
