@@ -3,23 +3,38 @@ import { usersUrl, orderUrl } from './modules/helper.js';
 
 console.log('orders.js file was loaded');
 
+const user = JSON.parse(localStorage.getItem('userLoggedIn'));
+console.log('user ===', user);
+const isUserAdmin = user?.role_id === 1;
+console.log('isUserAdmin ===', isUserAdmin);
+
 const els = {
   usersSelect: document.getElementById('user'),
   result: document.getElementById('table-data'),
 };
 
-fetch(usersUrl)
-  .then((resp) => resp.json())
-  .then((data) => {
-    createSelectOpt(data);
-    console.log(data);
-  })
-  .catch((error) => {
-    console.warn('ivyko klaida:', error);
-  });
+if (!isUserAdmin) {
+  els.usersSelect.classList.add('hidden');
+}
 
-if (els.usersSelect.value === 'User') {
-  getAll();
+if (!isUserAdmin && user) {
+  getOrdersByUserId(user.id);
+} else if (user === null) {
+  alert('you must log in');
+} else {
+  fetch(usersUrl)
+    .then((resp) => resp.json())
+    .then((data) => {
+      createSelectOpt(data);
+      console.log(data);
+    })
+    .catch((error) => {
+      console.warn('ivyko klaida:', error);
+    });
+
+  if (els.usersSelect.value === 'User') {
+    getAll();
+  }
 }
 
 els.usersSelect.addEventListener('change', () => {
@@ -50,7 +65,7 @@ function renderTableRow(arr) {
 }
 
 function makeOneTableRow(tObj) {
-  console.log('tObj ===', tObj);
+  // console.log('tObj ===', tObj);
   const trEl = document.createElement('tr');
   trEl.innerHTML = `
   <td>${tObj.user_name}</td>
