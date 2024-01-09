@@ -1,4 +1,4 @@
-const mysql = require('mysql2/promise');
+/* eslint-disable no-unused-vars */
 
 const dbConfig = {
   user: process.env.DB_USER,

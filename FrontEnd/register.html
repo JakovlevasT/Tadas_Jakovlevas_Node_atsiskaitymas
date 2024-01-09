@@ -11,40 +11,52 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/FrontEnd/style/reset.css" />
-    <link rel="stylesheet" href="/FrontEnd/style/login.css" />
+    <link rel="stylesheet" href="/FrontEnd/style/style.css" />
     <script src="/FrontEnd/js/register.js" type="module"></script>
   </head>
-  <body>
-    <div class="container">
+  <body class="login-body">
+    <div class="container login">
       <h1>Create profile</h1>
       <form novalidate>
         <div>
-          <label for="name">Name</label>
-          <input type="text" name="name" id="user-name" />
-          <span class="error"></span>
+          <label class="label-text" for="name">Name</label>
+          <input class="input-text" type="text" name="name" id="user-name" />
+          <span class="register-error"
+            >"user_name" is not allowed to be empty</span
+          >
         </div>
         <div>
-          <label for="email">Email</label>
-          <input type="email" name="email" id="email" />
-          <span class="error"></span>
+          <label class="label-text" for="email">Email</label>
+          <input class="input-text" type="email" name="email" id="email" />
+          <span class="register-error"></span>
         </div>
         <div>
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" />
-          <span class="error"></span>
+          <label class="label-text" for="password">Password</label>
+          <input
+            class="input-text"
+            type="password"
+            name="password"
+            id="password"
+          />
+          <span class="register-error"></span>
         </div>
         <div>
-          <label for="re-password">Repeat password</label>
-          <input type="password" name="password" id="rePassword" />
-          <span class="error"></span>
+          <label class="label-text" for="re-password">Repeat password</label>
+          <input
+            class="input-text"
+            type="password"
+            name="password"
+            id="rePassword"
+          />
+          <span class="register-error"></span>
         </div>
         <div>
-          <select name="role_id" id="role_id">
+          <select class="input-text" name="role_id" id="role_id">
             <option disabled selected>Role</option>
           </select>
-          <span class="error"></span>
+          <span class="register-error"></span>
         </div>
-        <button type="submit">Create profile</button>
+        <button class="btn" type="submit">Create profile</button>
       </form>
     </div>
   </body>
