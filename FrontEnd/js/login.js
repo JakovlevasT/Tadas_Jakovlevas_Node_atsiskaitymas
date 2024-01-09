@@ -57,7 +57,7 @@ els.form.addEventListener('submit', (e) => {
         JSON.stringify({ email: data.user.email })
       );
       console.log('User data stored in local storage');
-      // window.location.href =
+      window.location.href = 'orders.html';
     })
     .catch((error) => {
       console.warn('ivyko klaida:', error);

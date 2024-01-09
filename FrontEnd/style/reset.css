@@ -4,9 +4,7 @@
 
 body {
   margin: 0;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  background-color: #f4f4f4;
+  font-family: 'Roboto', sans-serif;
 }
 
 h1,
@@ -14,7 +12,8 @@ h2,
 h3,
 h4,
 p {
-  margin-top: 0;
+  margin: 0;
+  padding: 0;
 }
 
 a {

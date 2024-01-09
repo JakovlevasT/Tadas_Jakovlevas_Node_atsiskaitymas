@@ -4,17 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/FrontEnd/style/reset.css" />
     <link rel="stylesheet" href="/FrontEnd/style/login.css" />
     <script src="/FrontEnd/js/orders.js" type="module"></script>
   </head>
   <body>
-    <nav>N</nav>
+    <header class="navbar">
+      <nav class="container navbar__container">
+        <a href="index.html" class="navbar__logo">ORDER.ME</a>
+        <ul class="navbar__menu">
+          <li class="navbar__item">
+            <a href="orders.html" class="navbar__link active">Home</a>
+          </li>
+          <li class="navbar__item">
+            <a href="add_item.html" class="navbar__link">Add item</a>
+          </li>
+          <li class="navbar__item">
+            <a href="shop.html" class="navbar__link">Shop</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
     <div>
       <h1>Orders</h1>
       <select name="user" id="user">
-        <option selected disabled value="User">User</option>
+        <option selected value="User">All</option>
       </select>
 
       <table class="">

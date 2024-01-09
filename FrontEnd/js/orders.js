@@ -19,29 +19,17 @@ fetch(usersUrl)
   });
 
 if (els.usersSelect.value === 'User') {
-  fetch(orderUrl)
-    .then((resp) => resp.json())
-    .then((data) => {
-      console.log('data ===', data);
-      renderTableRow(data);
-    })
-    .catch((error) => {
-      console.warn('ivyko klaida:', error);
-    });
+  getAll();
 }
 
 els.usersSelect.addEventListener('change', () => {
   console.log(els.usersSelect.value);
 
-  fetch(`${orderUrl}/user/${els.usersSelect.value}`)
-    .then((resp) => resp.json())
-    .then((data) => {
-      console.log('data ===', data);
-      renderTableRow(data);
-    })
-    .catch((error) => {
-      console.warn('ivyko klaida:', error);
-    });
+  if (els.usersSelect.value === 'User') {
+    getAll();
+  } else {
+    getOrdersByUserId(els.usersSelect.value);
+  }
 });
 
 function createSelectOpt(arr) {
@@ -73,4 +61,28 @@ function makeOneTableRow(tObj) {
   <td>${tObj.status}</td>
   `;
   return trEl;
+}
+
+function getAll() {
+  fetch(orderUrl)
+    .then((resp) => resp.json())
+    .then((data) => {
+      console.log('data ===', data);
+      renderTableRow(data);
+    })
+    .catch((error) => {
+      console.warn('ivyko klaida:', error);
+    });
+}
+
+function getOrdersByUserId(id) {
+  fetch(`${orderUrl}/user/${id}`)
+    .then((resp) => resp.json())
+    .then((data) => {
+      console.log('data ===', data);
+      renderTableRow(data);
+    })
+    .catch((error) => {
+      console.warn('ivyko klaida:', error);
+    });
 }

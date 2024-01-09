@@ -46,3 +46,48 @@
 .error:empty {
   display: none;
 }
+
+.navbar {
+  background-color: #f2f2f2;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(176, 176, 176);
+  margin-bottom: 30px;
+}
+
+.navbar__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar__logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+.navbar__menu {
+  list-style: none;
+  display: flex;
+}
+.navbar__item {
+  margin-right: 10px;
+}
+
+.navbar__link {
+  color: #333;
+  text-decoration: none;
+}
+
+.navbar__link.active {
+  font-weight: bold;
+}
+.login {
+  border: 1px solid #000;
+  width: 30%;
+  margin: 300px auto;
+}
+
+.text-center {
+  text-align: center;
+}
