@@ -1,13 +1,12 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable guard-for-in */
-import { rolesUrl, registerUrl } from './modules/helper.js';
+import { rolesUrl, registerUrl, usersUrl } from './modules/helper.js';
 
 console.log('register.js file was loaded');
 
 fetch(rolesUrl)
   .then((resp) => resp.json())
   .then((data) => {
-    console.log('data ===', data);
     createSelectOpt(data);
   })
   .catch((error) => {
@@ -45,11 +44,32 @@ els.form.addEventListener('submit', (e) => {
     .then((data) => {
       console.log('data ===', data);
       showIndividualErrors(data);
+      checkEmail(registerObj.email);
     })
     .catch((error) => {
       console.warn('ivyko klaida:', error);
     });
 });
+
+function checkEmail(words) {
+  fetch(usersUrl)
+    .then((resp) => resp.json())
+    .then((data) => {
+      console.log('data ===', data);
+      data.forEach((dObj) => {
+        console.log(dObj.email);
+        console.log('els.email.val ===', words);
+        if (dObj.email !== words) {
+          console.log('all good, emailas laisvas');
+          return;
+        }
+        console.log('toks email jau egzistuoja');
+      });
+    })
+    .catch((error) => {
+      console.warn('ivyko klaida:', error);
+    });
+}
 
 function createSelectOpt(arr) {
   const selectOpt = arr.forEach((arrObj) => {

@@ -1,8 +1,10 @@
 /* eslint-disable guard-for-in */
 const baseUrl = 'http://localhost:3000/api';
 export const loginUrl = `${baseUrl}/auth/login`;
+export const usersUrl = `${baseUrl}/auth/users`;
 export const rolesUrl = `${baseUrl}/user_roles`;
 export const registerUrl = `${baseUrl}/auth/register`;
+export const shopItemsUrl = `${baseUrl}/shop_items`;
 
 export async function getDataFetch(url) {
   try {

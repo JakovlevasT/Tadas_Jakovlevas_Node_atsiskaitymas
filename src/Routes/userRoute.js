@@ -46,4 +46,11 @@ userRouter.post('/login', checkLoginBody, async (req, res) => {
   console.log(rows, error);
   res.json({ user: rows[0], status: 'Success' });
 });
+
+userRouter.get('/users', async (req, res) => {
+  const sql = `SELECT * FROM ${tableName}`;
+  const [rows, error] = await dbQueryWithData(sql);
+
+  res.json(rows);
+});
 module.exports = userRouter;
