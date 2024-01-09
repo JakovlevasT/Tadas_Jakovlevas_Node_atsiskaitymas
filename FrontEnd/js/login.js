@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable guard-for-in */
 import { loginUrl } from './modules/helper.js';
 
@@ -44,6 +45,11 @@ els.form.addEventListener('submit', (e) => {
         showError(data.errors);
         return;
       }
+      if (data.status === 'Error') {
+        console.log('error');
+        errorNotFound(data);
+        return;
+      }
 
       console.log('data ===', data.email);
       localStorage.setItem(
@@ -64,4 +70,10 @@ function showError(errorArr) {
     liEl.textContent = eObj.error;
     els.errorList.append(liEl);
   });
+}
+
+function errorNotFound(errObj) {
+  const liEl = document.createElement('li');
+  liEl.textContent = errObj.errorMsg;
+  els.errorList.append(liEl);
 }

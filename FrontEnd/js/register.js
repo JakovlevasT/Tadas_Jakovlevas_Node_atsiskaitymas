@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable guard-for-in */
 import { rolesUrl, registerUrl } from './modules/helper.js';
 
@@ -18,7 +19,7 @@ const els = {
   user_name: document.getElementById('user-name'),
   email: document.getElementById('email'),
   password: document.getElementById('password'),
-  rePassword: document.getElementById('re-password'),
+  rePassword: document.getElementById('rePassword'),
   selectField: document.getElementById('role'),
 };
 
@@ -26,11 +27,10 @@ els.form.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const registerObj = {
-    name: els.user_name.value.trim(),
+    user_name: els.user_name.value.trim(),
     email: els.email.value.trim(),
     password: els.password.value.trim(),
-    password2: els.rePassword.value.trim(),
-    selectVal: els.selectField.value,
+    role_id: els.selectField.value,
   };
   console.log('value ===', registerObj);
 
@@ -52,7 +52,7 @@ els.form.addEventListener('submit', (e) => {
 });
 
 function createSelectOpt(arr) {
-  const selectOpt = arr.map((arrObj) => {
+  const selectOpt = arr.forEach((arrObj) => {
     const opt = document.createElement('option');
     opt.value = arrObj.user_roles_id;
     opt.textContent = arrObj.name;

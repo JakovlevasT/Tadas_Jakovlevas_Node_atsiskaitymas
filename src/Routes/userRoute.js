@@ -35,8 +35,14 @@ userRouter.post('/login', checkLoginBody, async (req, res) => {
   const [rows, error] = await dbQueryWithData(sql, argArr);
   if (error) {
     res.status(400).json({ status: 'error', errors: error });
+    return;
   }
-
+  if (rows.length === 0) {
+    res
+      .status(400)
+      .json({ errorMsg: 'User or password does not exist', status: 'Error' });
+    return;
+  }
   console.log(rows, error);
   res.json({ user: rows[0], status: 'Success' });
 });
