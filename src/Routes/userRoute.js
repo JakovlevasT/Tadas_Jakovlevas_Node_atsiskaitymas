@@ -19,7 +19,7 @@ userRouter.post('/register', checkUsersBody, async (req, res) => {
     return;
   }
   if (insertResultObj.affectedRows === 1) {
-    res.status(201).json('Successfuly registered user');
+    res.status(201).json({ status: 'success', user: insertResultObj });
     return;
   }
   res.status(400).json('no rows affected');
@@ -50,4 +50,5 @@ userRouter.get('/users', async (req, res) => {
 
   res.json(rows);
 });
+
 module.exports = userRouter;

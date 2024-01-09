@@ -2,8 +2,6 @@
 /* eslint-disable guard-for-in */
 import { rolesUrl, registerUrl, usersUrl } from './modules/helper.js';
 
-console.log('register.js file was loaded');
-
 fetch(rolesUrl)
   .then((resp) => resp.json())
   .then((data) => {
@@ -20,10 +18,25 @@ const els = {
   password: document.getElementById('password'),
   rePassword: document.getElementById('rePassword'),
   selectField: document.getElementById('role'),
+  errorList: document.getElementById('error'),
 };
 
 els.form.addEventListener('submit', (e) => {
   e.preventDefault();
+
+  removeErrorClass(els.user_name);
+  removeErrorClass(els.email);
+  removeErrorClass(els.password);
+  removeErrorClass(els.rePassword);
+
+  if (els.password.value !== els.rePassword.value) {
+    console.log('NESUTAMPA');
+    showIndividualErrors([
+      { field: 'rePassword', error: 'passwords does not match' },
+    ]);
+
+    return;
+  }
 
   const registerObj = {
     user_name: els.user_name.value.trim(),
@@ -31,7 +44,7 @@ els.form.addEventListener('submit', (e) => {
     password: els.password.value.trim(),
     role_id: els.selectField.value,
   };
-  console.log('value ===', registerObj);
+  // console.log('value ===', registerObj);
 
   fetch(registerUrl, {
     method: 'POST',
@@ -43,33 +56,21 @@ els.form.addEventListener('submit', (e) => {
     .then((resp) => resp.json())
     .then((data) => {
       console.log('data ===', data);
-      showIndividualErrors(data);
-      checkEmail(registerObj.email);
+      if (data.status === 'success') {
+        // checkEmail(registerObj.email);
+        console.log('data ===', data);
+        return;
+      }
+      if (data.status === 'error') {
+        console.log('data ===', data);
+        showIndividualErrors(data.errors);
+        errorNotFound(data.errors);
+      }
     })
     .catch((error) => {
       console.warn('ivyko klaida:', error);
     });
 });
-
-function checkEmail(words) {
-  fetch(usersUrl)
-    .then((resp) => resp.json())
-    .then((data) => {
-      console.log('data ===', data);
-      data.forEach((dObj) => {
-        console.log(dObj.email);
-        console.log('els.email.val ===', words);
-        if (dObj.email !== words) {
-          console.log('all good, emailas laisvas');
-          return;
-        }
-        console.log('toks email jau egzistuoja');
-      });
-    })
-    .catch((error) => {
-      console.warn('ivyko klaida:', error);
-    });
-}
 
 function createSelectOpt(arr) {
   const selectOpt = arr.forEach((arrObj) => {
@@ -88,6 +89,20 @@ function showIndividualErrors(errorArr) {
     const found = errorArr.find((eObj) => eObj.field === key);
     if (found) {
       value.classList.add('is-invalid');
+      value.nextElementSibling.textContent = found.error;
     }
+  }
+}
+
+function errorNotFound(errObj) {
+  const liEl = document.createElement('li');
+  liEl.textContent = errObj.errorMsg;
+  els.errorList.append(liEl);
+}
+
+function removeErrorClass(el) {
+  if (el.classList.contains('is-invalid')) {
+    el.classList.remove('is-invalid');
+    el.nextElementSibling.textContent = '';
   }
 }

@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const { dbQueryWithData } = require('./helper');
 
 function fomratError(errObj) {
   const errMsg = errObj.details.map((el) => {
@@ -16,23 +17,37 @@ async function checkUsersBody(req, res, next) {
     password: Joi.string().min(3).required(),
     role_id: Joi.number().positive().required(),
   });
+
   try {
     const validationResult = await userShema.validateAsync(req.body, {
       abortEarly: false,
     });
-    console.log('validationResult ===', validationResult);
-    next();
+    const sql = `SELECT * FROM users WHERE email = "${validationResult.email}"`;
+    const [rows, error] = await dbQueryWithData(sql);
+    console.log('    validationResult.email ===', validationResult.email);
+    console.log('rows ===', rows);
+
+    if (error) {
+      res.status(500).json(error);
+    } else if (rows.length !== 0) {
+      res.status(400).json({
+        errors: [{ field: 'email', error: 'Email exists' }],
+        status: 'error',
+      });
+    } else {
+      next();
+    }
   } catch (error) {
     console.log('error ===', error);
     const msgIfError = fomratError(error);
-    res.status(400).json(msgIfError);
+    res.status(400).json({ errors: msgIfError, status: 'error' });
   }
 }
 
 async function checkLoginBody(req, res, next) {
   const loginShema = Joi.object({
     email: Joi.string().email({ minDomainSegments: 2 }).required(),
-    password: Joi.string().min(3).max(20).required(),
+    password: Joi.string().required(),
   });
   try {
     const validationResult = await loginShema.validateAsync(req.body, {

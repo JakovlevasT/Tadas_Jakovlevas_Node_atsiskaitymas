@@ -12,7 +12,6 @@ roleRouter.get('/', async (req, res) => {
   const [rows, error] = await dbQueryWithData(sql);
 
   if (error) {
-    console.log('error ===', error);
     res.status(500).json('Something went wrong');
     return;
   }
