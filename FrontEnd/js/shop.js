@@ -3,7 +3,13 @@ import { getDataFetch, shopItemsUrl, orderUrl } from './modules/helper.js';
 const user = JSON.parse(localStorage.getItem('userLoggedIn'));
 const els = {
   shopList: document.getElementById('shop-list'),
+  logOut: document.getElementById('log-out-btn'),
 };
+
+els.logOut.addEventListener('click', () => {
+  localStorage.removeItem('userLoggedIn');
+  window.location.href = 'login.html';
+});
 
 const [itemsArr, error] = await getDataFetch(shopItemsUrl);
 

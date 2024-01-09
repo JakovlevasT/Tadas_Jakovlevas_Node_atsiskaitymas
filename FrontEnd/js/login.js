@@ -54,7 +54,11 @@ els.form.addEventListener('submit', (e) => {
       console.log('data ===', data.email);
       localStorage.setItem(
         'userLoggedIn',
-        JSON.stringify({ email: data.user.email, id: data.user.user_id })
+        JSON.stringify({
+          email: data.user.email,
+          id: data.user.user_id,
+          role_id: data.role_id,
+        })
       );
       console.log('User data stored in local storage');
       window.location.href = 'shop.html';
