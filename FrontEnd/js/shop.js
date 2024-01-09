@@ -1,4 +1,4 @@
-import { getDataFetch, shopItemsUrl } from './modules/helper.js';
+import { getDataFetch, shopItemsUrl, orderUrl } from './modules/helper.js';
 
 const els = {
   shopList: document.getElementById('shop-list'),
@@ -34,19 +34,24 @@ function makeOneItemCard(IObj) {
   <p class="prod-desc">${IObj.description}</p>
   <p class="prod-price">${IObj.price}</p>
   <div class="flex center">
-    <button  class="btn">add to order</button>
-    <button  class="btn btn-secondary">Delete</button>
+    <button id='first' class="btn">add to order</button>
+    <button id='second' class="btn btn-secondary">Delete</button>
   </div>
   `;
-  const btnEl = liEl.querySelector('button');
-  btnEl.addEventListener('click', deleteItem);
+  const delBtnEl = liEl.querySelector('#second');
+  delBtnEl.addEventListener('click', deleteItem);
+
+  const addToOrderBtnEl = liEl.querySelector('#first');
+  addToOrderBtnEl.addEventListener('click', (event) => {
+    addToOrder(event, IObj);
+  });
 
   return liEl;
 }
 
 function deleteItem(event) {
-  const btnEl = event.target;
-  const cardEl = btnEl.parentElement.parentElement;
+  const delBtnEl = event.target;
+  const cardEl = delBtnEl.parentElement.parentElement;
   const idToDelete = cardEl.dataset.itemId;
   console.log('deleting Item', idToDelete);
   // isiusti fetch delete
@@ -65,4 +70,30 @@ function deleteItem(event) {
       console.warn('ivyko klaida:', error);
     });
   // ar sekmingas istrynimas
+}
+
+function addToOrder(event, obj) {
+  console.log('obj ===', obj);
+  const orderObj = {
+    user_id: 1,
+    shop_item_id: obj.shop_items_id,
+    quantity: 1,
+    total_price: obj.price,
+    status: 'pending',
+  };
+  fetch(orderUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(orderObj),
+  })
+    .then((resp) => resp.json())
+    .then((data) => {
+      console.log(data);
+      console.log('obj ===', obj);
+    })
+    .catch((error) => {
+      console.warn('ivyko klaida:', error);
+    });
 }
