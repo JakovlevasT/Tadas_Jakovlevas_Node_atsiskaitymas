@@ -45,9 +45,9 @@ function makeOneItemCard(IObj) {
   <h3 class="prod-name">${IObj.name}</h3>
   <p class="prod-desc">${IObj.description}</p>
   <p class="prod-price">${IObj.price}</p>
-  <div class="flex center">
-    <button id='first' class="btn">add to order</button>
-    <button id='second' class="btn btn-secondary">Delete</button>
+  <div class="flex center card-flex">
+    <button id='first' class="btn shop-btn btn-secondary">add to order</button>
+    <button id='second' class="btn shop-btn btn-secondary">Delete</button>
   </div>
   `;
 

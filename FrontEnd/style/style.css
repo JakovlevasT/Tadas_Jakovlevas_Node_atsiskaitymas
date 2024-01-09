@@ -38,10 +38,12 @@
 .hidden {
   display: none;
 }
-
+.flex {
+  display: flex;
+}
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   gap: 15px;
 }
 .input-text {
@@ -68,11 +70,12 @@
 
 /* nav */
 .navbar {
-  background-color: #f2f2f2;
+  background-color: var(--second-color);
   padding-top: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid rgb(176, 176, 176);
-  margin-bottom: 30px;
+  color: var(--four-color);
+  /* margin-bottom: 30px; */
 }
 
 .navbar__container {
@@ -83,25 +86,29 @@
 .navbar__logo {
   font-size: 24px;
   font-weight: bold;
-  color: #333;
+  color: var(--four-color);
   text-decoration: none;
 }
 .navbar__menu {
   list-style: none;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  /* gap: 5px; */
 }
 .navbar__item {
   margin-right: 10px;
 }
 
 .navbar__link {
-  color: #333;
+  color: var(--four-color);
   text-decoration: none;
 }
 
 .navbar__link.active {
   font-weight: bold;
 }
+
 /* nav end */
 
 /* login css */
@@ -169,6 +176,57 @@
 .role-text {
   font-size: 16px;
 }
+/* shop items */
+.shop-body {
+  background-color: var(--main-color);
+}
+.card {
+  background-color: var(--second-color);
+  border-radius: 7px;
+}
+.shop-title {
+  color: var(--four-color);
+}
+.shop-container {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: var(--main-color);
+  padding-top: 30px;
+}
+.card > img {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 7px;
+}
+
+.prod-name {
+  padding: 10px 0px;
+  color: var(--four-color);
+  text-align: center;
+  font-size: 25px;
+}
+.prod-desc,
+.prod-price {
+  padding: 5px 0px;
+  font-size: 20px;
+  color: var(--four-color);
+}
+.btn-secondary {
+  text-transform: uppercase;
+}
+.card-flex {
+  padding-top: 20px;
+  justify-content: space-between;
+}
+.shop-btn {
+  padding: 15px;
+}
+.shop-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
 
 @media screen and (min-width: 500px) {
   .login {
@@ -186,6 +244,9 @@
   }
   .btn {
     font-size: 18px;
+  }
+  .shop-container {
+    max-width: 400px;
   }
 }
 
@@ -206,10 +267,27 @@
   .btn {
     font-size: 20px;
   }
+  .shop-grid {
+    grid-template-columns: repeat(2, 1fr);
+    justify-self: center;
+  }
+  .shop-container {
+    max-width: 800px;
+  }
 }
 @media screen and (min-width: 976px) {
   .label-text {
     font-size: 27px;
     text-transform: capitalize;
+  }
+  .shop-grid {
+    grid-template-columns: repeat(3, 1fr);
+    /* justify-self: center; */
+  }
+  .shop-container {
+    max-width: 1000px;
+  }
+  .btn {
+    font-size: 18px;
   }
 }
