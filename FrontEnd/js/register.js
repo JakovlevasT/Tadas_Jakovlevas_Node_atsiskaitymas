@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-use-before-define */
 /* eslint-disable guard-for-in */
 import { rolesUrl, registerUrl, usersUrl } from './modules/helper.js';
@@ -17,7 +18,7 @@ const els = {
   email: document.getElementById('email'),
   password: document.getElementById('password'),
   rePassword: document.getElementById('rePassword'),
-  selectField: document.getElementById('role'),
+  role_id: document.getElementById('role_id'),
   errorList: document.getElementById('error'),
 };
 
@@ -28,6 +29,7 @@ els.form.addEventListener('submit', (e) => {
   removeErrorClass(els.email);
   removeErrorClass(els.password);
   removeErrorClass(els.rePassword);
+  removeErrorClass(els.role_id);
 
   if (els.password.value !== els.rePassword.value) {
     console.log('NESUTAMPA');
@@ -42,7 +44,7 @@ els.form.addEventListener('submit', (e) => {
     user_name: els.user_name.value.trim(),
     email: els.email.value.trim(),
     password: els.password.value.trim(),
-    role_id: els.selectField.value,
+    role_id: els.role_id.value,
   };
   // console.log('value ===', registerObj);
 
@@ -77,7 +79,7 @@ function createSelectOpt(arr) {
     const opt = document.createElement('option');
     opt.value = arrObj.user_roles_id;
     opt.textContent = arrObj.name;
-    els.selectField.append(opt);
+    els.role_id.append(opt);
   });
   return selectOpt;
 }

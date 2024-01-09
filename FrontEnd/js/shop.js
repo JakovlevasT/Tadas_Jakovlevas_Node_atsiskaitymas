@@ -1,10 +1,9 @@
 import { getDataFetch, shopItemsUrl, orderUrl } from './modules/helper.js';
 
+const user = JSON.parse(localStorage.getItem('userLoggedIn'));
 const els = {
   shopList: document.getElementById('shop-list'),
 };
-
-console.log('els ===', els);
 
 const [itemsArr, error] = await getDataFetch(shopItemsUrl);
 
@@ -43,7 +42,7 @@ function makeOneItemCard(IObj) {
 
   const addToOrderBtnEl = liEl.querySelector('#first');
   addToOrderBtnEl.addEventListener('click', (event) => {
-    addToOrder(event, IObj);
+    addToOrder(IObj);
   });
 
   return liEl;
@@ -72,10 +71,10 @@ function deleteItem(event) {
   // ar sekmingas istrynimas
 }
 
-function addToOrder(event, obj) {
+function addToOrder(obj) {
   console.log('obj ===', obj);
   const orderObj = {
-    user_id: 1,
+    user_id: user.id,
     shop_item_id: obj.shop_items_id,
     quantity: 1,
     total_price: obj.price,
@@ -90,10 +89,10 @@ function addToOrder(event, obj) {
   })
     .then((resp) => resp.json())
     .then((data) => {
-      console.log(data);
-      console.log('obj ===', obj);
+      console.log('data ===', data);
+      alert(data.msg);
     })
     .catch((error) => {
-      console.warn('ivyko klaida:', error);
+      alert('There has been an error');
     });
 }
