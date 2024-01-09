@@ -16,43 +16,55 @@
   </head>
   <body class="login-body">
     <div class="container login">
-      <h1>Create profile</h1>
+      <h1 class="create-title">Create profile</h1>
       <form novalidate>
         <div>
-          <label class="label-text" for="name">Name</label>
-          <input class="input-text" type="text" name="name" id="user-name" />
-          <span class="register-error"
-            >"user_name" is not allowed to be empty</span
-          >
-        </div>
-        <div>
-          <label class="label-text" for="email">Email</label>
-          <input class="input-text" type="email" name="email" id="email" />
+          <label class="label-text" for="name">Name:</label>
+          <input
+            class="input-text"
+            type="text"
+            name="name"
+            id="user-name"
+            placeholder="Your name"
+          />
           <span class="register-error"></span>
         </div>
         <div>
-          <label class="label-text" for="password">Password</label>
+          <label class="label-text" for="email">Email:</label>
+          <input
+            class="input-text"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Your email"
+          />
+          <span class="register-error"></span>
+        </div>
+        <div>
+          <label class="label-text" for="password">Password:</label>
           <input
             class="input-text"
             type="password"
             name="password"
             id="password"
+            placeholder="Your password"
           />
           <span class="register-error"></span>
         </div>
         <div>
-          <label class="label-text" for="re-password">Repeat password</label>
+          <label class="label-text" for="re-password">Repeat password:</label>
           <input
             class="input-text"
             type="password"
             name="password"
             id="rePassword"
+            placeholder="Repeat password"
           />
           <span class="register-error"></span>
         </div>
         <div>
-          <select class="input-text" name="role_id" id="role_id">
-            <option disabled selected>Role</option>
+          <select class="input-text role-text" name="role_id" id="role_id">
+            <option disabled selected>Role:</option>
           </select>
           <span class="register-error"></span>
         </div>
