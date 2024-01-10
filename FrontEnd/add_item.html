@@ -31,19 +31,31 @@
         </ul>
       </nav>
     </header>
-    <div class="container">
-      <h1>Create Item</h1>
-      <div class="container order-container">
+    <div class="container add-item-container">
+      <h1 class="add-item-title text-center">Create Item</h1>
+      <div class="container">
         <form novalidate>
           <div>
             <label class="label-text" for="name">Name:</label>
-            <input class="input-text" type="text" name="name" id="item-name" />
-            <span class="error"></span>
+            <input
+              class="input-text"
+              type="text"
+              name="name"
+              id="item-name"
+              placeholder="Items name"
+            />
+            <span class="register-error"></span>
           </div>
           <div>
             <label class="label-text" for="price">Price:</label>
-            <input class="input-text" type="number" name="price" id="price" />
-            <span class="error"></span>
+            <input
+              class="input-text"
+              type="number"
+              name="price"
+              id="price"
+              placeholder="Price"
+            />
+            <span class="register-error"></span>
           </div>
           <div>
             <label class="label-text" for="Description">Description:</label>
@@ -53,20 +65,31 @@
               id="description"
               cols="20"
               rows="10"
+              placeholder="Items description..."
             ></textarea>
-            <span class="error"></span>
+            <span class="register-error"></span>
           </div>
           <div>
             <label class="label-text" for="image">Image:</label>
-            <input class="input-text" type="text" name="image" id="image" />
-            <span class="error"></span>
+            <input
+              class="input-text"
+              type="text"
+              name="image"
+              id="image"
+              placeholder="Link to the image"
+            />
+            <span class="register-error"></span>
           </div>
           <div>
             <label class="label-text" for="item-type"></label>
-            <select class="input-text" name="item-type" id="item-type">
-              <option disabled selected>Item type</option>
+            <select
+              class="input-text item-type"
+              name="item-type"
+              id="item-type"
+            >
+              <option disabled selected>Item type:</option>
             </select>
-            <span class="error"></span>
+            <span class="register-error"></span>
           </div>
           <button class="btn" type="submit">Create Item</button>
         </form>

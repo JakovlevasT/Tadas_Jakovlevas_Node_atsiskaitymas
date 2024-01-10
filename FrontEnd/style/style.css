@@ -260,6 +260,22 @@
   color: var(--four-color);
 }
 
+/* add item css */
+.add-item-title {
+  padding-bottom: 20px;
+}
+.add-item-container {
+  max-width: 350px;
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  margin: 80px auto;
+  background-color: var(--second-color);
+}
+.item-type {
+  font-weight: bold;
+}
+
 @media screen and (min-width: 500px) {
   .login {
     max-width: 400px;
@@ -290,6 +306,9 @@
   }
   .order-select {
     font-size: 16px;
+  }
+  .add-item-container {
+    max-width: 500px;
   }
 }
 
