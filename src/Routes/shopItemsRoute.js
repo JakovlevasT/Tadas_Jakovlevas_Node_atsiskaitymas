@@ -16,7 +16,6 @@ shopItemRouter.post('/', checkShopItemsBody, async (req, res) => {
   const argArr = [name, price, description, image, itemTypeId];
   const sql = `INSERT INTO ${tableName} (name, price, description, image, item_type_id) VALUES (?,?,?,?,?)`;
   const [insertResultObj, error] = await dbQueryWithData(sql, argArr);
-  console.log('insertResultObj ===', insertResultObj);
 
   if (error) {
     res.status(500).json({ status: 'error', errors: error });

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const Joi = require('joi');
 const { dbQueryWithData } = require('./helper');
 
@@ -24,8 +25,6 @@ async function checkUsersBody(req, res, next) {
     });
     const sql = `SELECT * FROM users WHERE email = "${validationResult.email}"`;
     const [rows, error] = await dbQueryWithData(sql);
-    console.log('    validationResult.email ===', validationResult.email);
-    console.log('rows ===', rows);
 
     if (error) {
       res.status(500).json(error);
@@ -38,7 +37,6 @@ async function checkUsersBody(req, res, next) {
       next();
     }
   } catch (error) {
-    console.log('error ===', error);
     const msgIfError = fomratError(error);
     res.status(400).json({ errors: msgIfError, status: 'error' });
   }
@@ -53,7 +51,6 @@ async function checkLoginBody(req, res, next) {
     const validationResult = await loginShema.validateAsync(req.body, {
       abortEarly: false,
     });
-    console.log('validationResult ===', validationResult);
     next();
   } catch (error) {
     const msgIfError = fomratError(error);
@@ -73,7 +70,6 @@ async function checkShopItemsBody(req, res, next) {
     const validationResult = await shopItemShema.validateAsync(req.body, {
       abortEarly: false,
     });
-    console.log('validationResult ===', validationResult);
     next();
   } catch (error) {
     const msgIfError = fomratError(error);
@@ -93,7 +89,6 @@ async function checkOrdersBody(req, res, next) {
     const validationResult = await orderShema.validateAsync(req.body, {
       abortEarly: false,
     });
-    console.log('validationResult ===', validationResult);
     next();
   } catch (error) {
     const msgIfError = fomratError(error);

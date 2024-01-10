@@ -1,8 +1,7 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-use-before-define */
+// eslint-disable-next-line import/extensions
 import { itemUrl, shopItemsUrl } from './modules/helper.js';
-
-console.log('add_item.js file was loaded');
 
 const user = JSON.parse(localStorage.getItem('userLoggedIn'));
 if (user === null) {
@@ -28,6 +27,11 @@ fetch(itemUrl)
 
 els.form.addEventListener('submit', (e) => {
   e.preventDefault();
+  removeErrorClass(els.name);
+  removeErrorClass(els.price);
+  removeErrorClass(els.description);
+  removeErrorClass(els.image);
+  removeErrorClass(els.item_type_id);
 
   const itemObj = {
     name: els.name.value.trim(),
@@ -76,5 +80,13 @@ function showIndividualErrors(errorArr) {
       value.classList.add('is-invalid');
       value.nextElementSibling.textContent = found.error;
     }
+  }
+}
+
+function removeErrorClass(el) {
+  if (el.classList.contains('is-invalid')) {
+    el.classList.remove('is-invalid');
+    // eslint-disable-next-line no-param-reassign
+    el.nextElementSibling.textContent = '';
   }
 }

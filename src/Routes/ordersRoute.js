@@ -18,10 +18,9 @@ orderRouter.post('/', checkOrdersBody, async (req, res) => {
   } = req.body;
   const argArr = [userId, shopItemId, quantity, totalPrice, status];
   const sql = `INSERT INTO ${tableName} ( user_id, shop_item_id, quantity, total_price, status) VALUES (?,?,?,?,?)`;
+  // eslint-disable-next-line no-unused-vars
   const [rows, error] = await dbQueryWithData(sql, argArr);
-  console.log('argArr ===', argArr);
   if (error) {
-    console.log('error ===', error);
     res.status(400).json({ msg: 'Something went wrong' });
     return;
   }
@@ -39,7 +38,6 @@ orderRouter.get('/', async (req, res) => {
   ON shop_items.shop_items_id=orders.shop_item_id`;
   const [rows, error] = await dbQueryWithData(sql);
   if (error) {
-    console.log('error ===', error);
     res.status(500).json('Something went wrong');
     return;
   }
@@ -54,7 +52,6 @@ orderRouter.get('/:id', async (req, res) => {
   const [rows, error] = await dbQueryWithData(sql, [orderId]);
 
   if (error) {
-    console.log('error ===', error);
     res.status(500).json('Something went wrong');
     return;
   }
@@ -75,7 +72,6 @@ orderRouter.get('/user/:user_id', async (req, res) => {
   const [rows, error] = await dbQueryWithData(sql, [userId]);
 
   if (error) {
-    console.log('error ===', error);
     res.status(500).json('Something went wrong');
     return;
   }

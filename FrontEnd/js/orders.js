@@ -1,7 +1,6 @@
 /* eslint-disable no-use-before-define */
+// eslint-disable-next-line import/extensions
 import { usersUrl, orderUrl } from './modules/helper.js';
-
-// console.log('orders.js file was loaded');
 
 const user = JSON.parse(localStorage.getItem('userLoggedIn'));
 if (user === null) {
@@ -29,6 +28,7 @@ els.logOut.addEventListener('click', () => {
 if (!isUserAdmin && user) {
   getOrdersByUserId(user.id);
 } else if (user === null) {
+  // eslint-disable-next-line no-alert
   alert('you must log in');
 } else {
   fetch(usersUrl)

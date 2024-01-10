@@ -1,5 +1,6 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-use-before-define */
+// eslint-disable-next-line import/extensions
 import { getDataFetch, shopItemsUrl, orderUrl } from './modules/helper.js';
 
 const user = JSON.parse(localStorage.getItem('userLoggedIn'));
@@ -60,7 +61,7 @@ function makeOneItemCard(IObj) {
   }
 
   const addToOrderBtnEl = liEl.querySelector('#first');
-  addToOrderBtnEl.addEventListener('click', (event) => {
+  addToOrderBtnEl.addEventListener('click', () => {
     addToOrder(IObj);
   });
 
@@ -88,7 +89,6 @@ function deleteItem(event) {
 }
 
 function addToOrder(obj) {
-  console.log('obj ===', obj);
   const orderObj = {
     user_id: user.id,
     shop_item_id: obj.shop_items_id,
@@ -105,7 +105,6 @@ function addToOrder(obj) {
   })
     .then((resp) => resp.json())
     .then((data) => {
-      console.log('data ===', data);
       alert(data.msg);
     })
     .catch((error) => {

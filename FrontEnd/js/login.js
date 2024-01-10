@@ -1,8 +1,7 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable guard-for-in */
+// eslint-disable-next-line import/extensions
 import { loginUrl } from './modules/helper.js';
-
-console.log('login.js file was loaded');
 
 const els = {
   form: document.forms[0],
@@ -11,8 +10,6 @@ const els = {
   errorList: document.getElementById('errors-list'),
   logBtn: document.getElementById('login-btn'),
 };
-
-const userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn'));
 
 els.form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -50,6 +47,7 @@ els.form.addEventListener('submit', (e) => {
           email: data.user.email,
           id: data.user.user_id,
           role_id: data.user.role_id,
+          // eslint-disable-next-line comma-dangle
         })
       );
       window.location.href = 'shop.html';

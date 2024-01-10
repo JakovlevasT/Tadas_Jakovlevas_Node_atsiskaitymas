@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-use-before-define */
 /* eslint-disable guard-for-in */
+// eslint-disable-next-line import/extensions
 import { rolesUrl, registerUrl } from './modules/helper.js';
 
 fetch(rolesUrl)

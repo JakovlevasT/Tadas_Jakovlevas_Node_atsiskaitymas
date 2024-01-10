@@ -40,12 +40,12 @@ userRouter.post('/login', checkLoginBody, async (req, res) => {
       .json({ errorMsg: 'User or password does not exist', status: 'Error' });
     return;
   }
-  console.log(rows, error);
   res.json({ user: rows[0], status: 'Success' });
 });
 
 userRouter.get('/users', async (req, res) => {
   const sql = `SELECT * FROM ${tableName}`;
+  // eslint-disable-next-line no-unused-vars
   const [rows, error] = await dbQueryWithData(sql);
 
   res.json(rows);
