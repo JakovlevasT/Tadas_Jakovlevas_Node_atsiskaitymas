@@ -76,7 +76,6 @@ function deleteItem(event) {
     method: 'DELETE',
   })
     .then((resp) => {
-      console.log('resp ===', resp);
       if (resp.status === 200) {
         alert('Item was deleted');
 

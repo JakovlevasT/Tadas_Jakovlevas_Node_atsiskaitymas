@@ -33,15 +33,3 @@ export function niceDate(dbDate, format = '') {
   }
   return formatedDate;
 }
-
-// // cia tik trumpam
-// export function showIndividualErrors(errorArr) {
-//   // eslint-disable-next-line no-restricted-syntax
-//   for (const key in els) {
-//     const value = els[key];
-//     const found = errorArr.find((eObj) => eObj.field === key);
-//     if (found) {
-//       value.classList.add('is-invalid');
-//     }
-//   }
-// }
