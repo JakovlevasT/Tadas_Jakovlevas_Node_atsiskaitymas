@@ -3,13 +3,15 @@
 import { getDataFetch, shopItemsUrl, orderUrl } from './modules/helper.js';
 
 const user = JSON.parse(localStorage.getItem('userLoggedIn'));
+if (user === null) {
+  window.location.href = 'login.html';
+}
 const isUserAdmin = user?.role_id === 1;
 const els = {
   shopList: document.getElementById('shop-list'),
   logOut: document.getElementById('log-out-btn'),
   addItem: document.getElementById('add-item'),
 };
-console.log('user ===', user);
 if (!isUserAdmin) {
   els.addItem.classList.add('hidden');
 }
@@ -20,7 +22,6 @@ els.logOut.addEventListener('click', () => {
 
 const [itemsArr, error] = await getDataFetch(shopItemsUrl);
 
-console.log('itemsArr ===', itemsArr);
 if (error) {
   console.log(error);
 }
@@ -70,8 +71,6 @@ function deleteItem(event) {
   const delBtnEl = event.target;
   const cardEl = delBtnEl.parentElement.parentElement;
   const idToDelete = cardEl.dataset.itemId;
-  console.log('deleting Item', idToDelete);
-  // isiusti fetch delete
   fetch(`${shopItemsUrl}/${idToDelete}`, {
     method: 'DELETE',
   })
@@ -86,7 +85,6 @@ function deleteItem(event) {
     .catch((error) => {
       alert('ivyko klaida');
     });
-  // ar sekmingas istrynimas
 }
 
 function addToOrder(obj) {

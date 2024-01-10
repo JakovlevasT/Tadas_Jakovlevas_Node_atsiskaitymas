@@ -1,21 +1,30 @@
 /* eslint-disable no-use-before-define */
 import { usersUrl, orderUrl } from './modules/helper.js';
 
-console.log('orders.js file was loaded');
+// console.log('orders.js file was loaded');
 
 const user = JSON.parse(localStorage.getItem('userLoggedIn'));
-console.log('user ===', user);
+if (user === null) {
+  window.location.href = 'login.html';
+}
 const isUserAdmin = user?.role_id === 1;
-console.log('isUserAdmin ===', isUserAdmin);
 
 const els = {
   usersSelect: document.getElementById('user'),
+  navAddItem: document.getElementById('add-item'),
+  logOut: document.getElementById('log-out-btn'),
   result: document.getElementById('table-data'),
 };
 
 if (!isUserAdmin) {
   els.usersSelect.classList.add('hidden');
+  els.navAddItem.classList.add('hidden');
 }
+
+els.logOut.addEventListener('click', () => {
+  localStorage.removeItem('userLoggedIn');
+  window.location.href = 'login.html';
+});
 
 if (!isUserAdmin && user) {
   getOrdersByUserId(user.id);
@@ -26,7 +35,6 @@ if (!isUserAdmin && user) {
     .then((resp) => resp.json())
     .then((data) => {
       createSelectOpt(data);
-      console.log(data);
     })
     .catch((error) => {
       console.warn('ivyko klaida:', error);
@@ -38,8 +46,6 @@ if (!isUserAdmin && user) {
 }
 
 els.usersSelect.addEventListener('change', () => {
-  console.log(els.usersSelect.value);
-
   if (els.usersSelect.value === 'User') {
     getAll();
   } else {
@@ -65,7 +71,6 @@ function renderTableRow(arr) {
 }
 
 function makeOneTableRow(tObj) {
-  // console.log('tObj ===', tObj);
   const trEl = document.createElement('tr');
   trEl.innerHTML = `
   <td>${tObj.user_name}</td>
@@ -82,7 +87,6 @@ function getAll() {
   fetch(orderUrl)
     .then((resp) => resp.json())
     .then((data) => {
-      console.log('data ===', data);
       renderTableRow(data);
     })
     .catch((error) => {
@@ -94,7 +98,6 @@ function getOrdersByUserId(id) {
   fetch(`${orderUrl}/user/${id}`)
     .then((resp) => resp.json())
     .then((data) => {
-      console.log('data ===', data);
       renderTableRow(data);
     })
     .catch((error) => {

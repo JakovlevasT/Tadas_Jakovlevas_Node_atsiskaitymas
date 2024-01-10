@@ -36,7 +36,7 @@
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 .flex {
   display: flex;
@@ -235,7 +235,7 @@
   max-width: 450px;
 }
 .order-select {
-  background-color: var(--main-color);
+  background-color: var(--second-color);
   color: var(--four-color);
   padding: 8px;
   border-radius: 7px;

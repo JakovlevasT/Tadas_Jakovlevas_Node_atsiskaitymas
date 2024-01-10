@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-use-before-define */
 /* eslint-disable guard-for-in */
-import { rolesUrl, registerUrl, usersUrl } from './modules/helper.js';
+import { rolesUrl, registerUrl } from './modules/helper.js';
 
 fetch(rolesUrl)
   .then((resp) => resp.json())
@@ -32,7 +32,6 @@ els.form.addEventListener('submit', (e) => {
   removeErrorClass(els.role_id);
 
   if (els.password.value !== els.rePassword.value) {
-    console.log('NESUTAMPA');
     showIndividualErrors([
       { field: 'rePassword', error: 'passwords does not match' },
     ]);
@@ -46,7 +45,6 @@ els.form.addEventListener('submit', (e) => {
     password: els.password.value.trim(),
     role_id: els.role_id.value,
   };
-  // console.log('value ===', registerObj);
 
   fetch(registerUrl, {
     method: 'POST',
@@ -57,14 +55,10 @@ els.form.addEventListener('submit', (e) => {
   })
     .then((resp) => resp.json())
     .then((data) => {
-      console.log('data ===', data);
       if (data.status === 'success') {
-        // checkEmail(registerObj.email);
-        console.log('data ===', data);
         return;
       }
       if (data.status === 'error') {
-        console.log('data ===', data);
         showIndividualErrors(data.errors);
         errorNotFound(data.errors);
       }

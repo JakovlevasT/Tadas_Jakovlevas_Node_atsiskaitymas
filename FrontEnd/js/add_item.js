@@ -4,6 +4,10 @@ import { itemUrl, shopItemsUrl } from './modules/helper.js';
 
 console.log('add_item.js file was loaded');
 
+const user = JSON.parse(localStorage.getItem('userLoggedIn'));
+if (user === null) {
+  window.location.href = 'login.html';
+}
 const els = {
   form: document.forms[0],
   name: document.getElementById('item-name'),
@@ -16,14 +20,11 @@ const els = {
 fetch(itemUrl)
   .then((resp) => resp.json())
   .then((data) => {
-    // console.log(data);
     generateSelectOpt(data);
   })
   .catch((error) => {
     console.warn('ivyko klaida:', error);
   });
-
-console.log('els ===', els);
 
 els.form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -35,7 +36,6 @@ els.form.addEventListener('submit', (e) => {
     image: els.image.value.trim(),
     item_type_id: els.item_type_id.value,
   };
-  console.log('value ===', itemObj);
   fetch(shopItemsUrl, {
     method: 'POST',
     headers: {
@@ -45,7 +45,6 @@ els.form.addEventListener('submit', (e) => {
   })
     .then((resp) => resp.json())
     .then((data) => {
-      console.log(data);
       if (data.status === 'error') {
         showIndividualErrors(data.errors);
       }
@@ -74,7 +73,6 @@ function showIndividualErrors(errorArr) {
     const value = els[key];
     const found = errorArr.find((eObj) => eObj.field === key);
     if (found) {
-      console.log('error ===', found);
       value.classList.add('is-invalid');
       value.nextElementSibling.textContent = found.error;
     }

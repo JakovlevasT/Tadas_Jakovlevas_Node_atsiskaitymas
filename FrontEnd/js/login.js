@@ -13,18 +13,13 @@ const els = {
 };
 
 const userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn'));
-console.log('userLoggedIn ===', userLoggedIn);
-
-console.log('els ===', els);
 
 els.form.addEventListener('submit', (e) => {
   e.preventDefault();
   els.errorList.innerHTML = '';
 
   const emailVal = els.email.value.trim();
-  console.log('emailVal ===', emailVal);
   const passVal = els.password.value.trim();
-  console.log('passVal ===', passVal);
 
   const loginObj = {
     email: emailVal,
@@ -40,18 +35,15 @@ els.form.addEventListener('submit', (e) => {
   })
     .then((resp) => resp.json())
     .then((data) => {
-      console.log('data ===', data);
       if (data.status === 'error') {
         showError(data.errors);
         return;
       }
       if (data.status === 'Error') {
-        console.log('error');
         errorNotFound(data);
         return;
       }
 
-      console.log('data ===', data.user);
       localStorage.setItem(
         'userLoggedIn',
         JSON.stringify({
@@ -60,7 +52,6 @@ els.form.addEventListener('submit', (e) => {
           role_id: data.user.role_id,
         })
       );
-      console.log('User data stored in local storage');
       window.location.href = 'shop.html';
     })
     .catch((error) => {
